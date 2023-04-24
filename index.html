@@ -10,9 +10,18 @@
   <body>
     <script src="./index.js"></script>
     <div class="button">
-      <button type="button" onclick="changeBackground()" class="but">
-        Test
-      </button>
+      <button type="button" onclick="changeBackground()" id="but">Test</button>
+    </div>
+    <div class="question-box">
+      <button id="start" onclick="generateRandomColor()">Start</button>
+      <div onload="generateRandomColor()" id="color"></div>
+      <p id="question"></p>
+    </div>
+    <div class="guesses">
+      <button id="guess1"></button>
+      <button id="guess2"></button>
+      <button id="guess3"></button>
+      <button id="guess4"></button>
     </div>
   </body>
 </html>
