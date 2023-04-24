@@ -11,10 +11,16 @@ function changeBackground() {
     button.style.color = "white";
   }
 }
+
+function randomIntFromInterval() {
+  return Math.floor(Math.random() * (4 - 1 + 1) + 1);
+}
+randomIntFromInterval();
+
 function generateRandomColor() {
   const color = document.getElementById("color");
-  const randomColor = Math.floor(Math.random() * 16777215).toString(16);
-  color.style.backgroundColor = "#" + randomColor;
+  const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+  color.style.backgroundColor = randomColor;
   let button = document.getElementById("start").innerHTML;
   if (button === "Start") {
     document.getElementById("start").innerHTML = "Next";
@@ -24,9 +30,17 @@ function generateRandomColor() {
     const buttons = guesses[i].getElementsByTagName("button");
     for (let j = 0; j < buttons.length; j++) {
       const randomnumber = Math.floor(Math.random() * 16777215).toString(16);
-      const randomColor = "#" + randomnumber;
-      buttons[j].style.backgroundColor = randomColor;
+      const randomColor2 = "#" + randomnumber;
+      buttons[j].style.backgroundColor /*innerHTML*/ = randomColor2;
     }
   }
   return randomColor;
 }
+
+function generateRandomAnswear(randomColor) {
+  let answer = randomColor;
+  console.log(answer);
+  return answer;
+}
+
+generateRandomAnswear();
