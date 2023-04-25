@@ -12,11 +12,6 @@ function changeBackground() {
   }
 }
 
-function randomIntFromInterval() {
-  return Math.floor(Math.random() * (4 - 1 + 1) + 1);
-}
-randomIntFromInterval();
-
 function generateRandomColor() {
   const color = document.getElementById("color");
   const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
@@ -28,19 +23,15 @@ function generateRandomColor() {
   const guesses = document.getElementsByClassName("guesses");
   for (let i = 0; i < guesses.length; i++) {
     const buttons = guesses[i].getElementsByTagName("button");
-    for (let j = 0; j < buttons.length; j++) {
+    for (let j = 0; j < 3; j++) {
       const randomnumber = Math.floor(Math.random() * 16777215).toString(16);
       const randomColor2 = "#" + randomnumber;
-      buttons[j].style.backgroundColor /*innerHTML*/ = randomColor2;
+
+      let randomNum = Math.floor(Math.random() * (4 - 1 + 1) + 1);
+      document.getElementById("guess" + randomNum).innerHTML = randomColor;
     }
   }
+
+  console.log(randomColor);
   return randomColor;
 }
-
-function generateRandomAnswear(randomColor) {
-  let answer = randomColor;
-  console.log(answer);
-  return answer;
-}
-
-generateRandomAnswear();
