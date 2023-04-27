@@ -38,26 +38,18 @@ function generateRandomColor() {
       document.getElementById("guess" + i).innerHTML = randomColor2;
     }
   }
-
-  console.log(randomColor);
+  console.log("randomColor = " + randomColor);
   return randomColor;
 }
 
-function checkAnswer(guess) {
-  const color = document.getElementById("color").style.backgroundColor;
-  function rgbToHex(r, g, b) {
-    return "#" + ((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1);
-  }
-  rgb = color.slice(4, -1);
-  console.log(rgb);
+function checkAnswer(guess, randomCol) {
+  console.log(randomCol);
 
-  console.log(rgbToHex(r));
-
-  if (guess == color) {
-    document.getElementById("result").innerHTML = "Correct!";
-    document.getElementById("result").style.color = "green";
+  if (guess === randomCol) {
+    const result = document.getElementById("result");
+    result.innerHTML = "Correct!";
   } else {
-    document.getElementById("result").innerHTML = "Wrong!";
-    document.getElementById("result").style.color = "red";
+    const result = document.getElementById("result");
+    result.innerHTML = "Wrong!";
   }
 }
