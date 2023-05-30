@@ -1,19 +1,25 @@
-function changeBackground() {
-  const body = document.getElementsByTagName("body")[0];
-  const button = document.getElementById("but");
-  const question = document.getElementById("question");
-  const scores = document.getElementsByClassName("component");
-  const logo = document.getElementById("logo");
-  const color = document.getElementById("color");
-  const guess = document.getElementsByClassName("guess");
+const body = document.getElementsByTagName("body")[0];
+const button = document.getElementById("but");
+const question = document.getElementById("question");
+const scores = document.getElementsByClassName("scores");
+const logo = document.getElementById("logo");
+const color = document.getElementById("color");
+const guess = document.getElementsByClassName("guess");
+const colorContainer = document.getElementsByClassName("color-container")[0];
+const guesses = document.getElementsByClassName("guesses");
+const firstQestion = document.getElementById("first-question");
+const component = document.getElementsByClassName("component");
 
+function changeBackground() {
   if (body.style.backgroundColor === "white") {
     body.style.backgroundColor = "#2e2e2e";
     button.style.backgroundColor = "white";
     button.style.color = "#2e2e2e";
     question.style.color = "white";
     logo.style.color = "white";
+    component.style.backgroundColor = "#2e2e2e";
   } else {
+    // button.innerHTML
     body.style.backgroundColor = "white";
     button.style.backgroundColor = "#2e2e2e";
     button.style.color = "white";
@@ -21,8 +27,14 @@ function changeBackground() {
     logo.style.color = "#2e2e2e";
     guess.style.color = "#2e2e2e";
     guess.style.backgroundColor = "white";
+    component[0].style.backgroundColor = "white";
   }
 }
+
+scores[0].style.display = "none";
+colorContainer.style.display = "none";
+guesses[0].style.display = "none";
+
 let GlobalRandomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
 
 function generateRandomColor() {
@@ -36,7 +48,10 @@ function generateRandomColor() {
   color.style.backgroundColor = GlobalRandomColor;
   let button = document.getElementById("start").innerHTML;
   if (button === "Start") {
-    document.getElementById("start").innerHTML = "Restart";
+    scores[0].style.display = "flex";
+    colorContainer.style.display = "flex";
+    guesses[0].style.display = "flex";
+    firstQestion.style.display = "none";
   }
   const correct = Math.floor(Math.random() * 4) + 1;
   for (let i = 1; i <= 4; i++) {
@@ -99,7 +114,6 @@ function checkAnswer(guess) {
 let timeleft = 5;
 let timerInterval;
 
-const body = document.getElementsByTagName("body")[0];
 let restart = document.getElementById("restart");
 let gameOver = document.getElementById("game-over");
 let end = document.getElementById("end");

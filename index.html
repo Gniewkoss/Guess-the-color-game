@@ -19,12 +19,17 @@
     <!-- navbar -->
 
     <div class="navbar">
+      <img id="logo-photo" src="./icons/logo.svg" alt="" />
       <h1 id="logo">Colors</h1>
-      <div class="button">
-        <button type="button" onclick="changeBackground()" id="but">
-          Test
-        </button>
-      </div>
+
+      <button
+        type="button"
+        onclick="changeBackground()"
+        id="but"
+        class="button"
+      >
+        <img src="./icons/night-mode.png" alt="" />
+      </button>
     </div>
     <!-- scores -->
     <div class="scores">
@@ -39,8 +44,11 @@
     </div>
 
     <div class="question-box">
+      <div class="first-questions">
+        <div id="first-question">Can you guess the hex color?</div>
+        <button id="start" onclick="start()">Start</button>
+      </div>
       <p id="result"></p>
-      <button id="start" onclick="start()">Start</button>
     </div>
     <div class="guesses">
       <button
