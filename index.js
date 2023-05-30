@@ -11,6 +11,7 @@ const firstQestion = document.getElementById("first-question");
 const component = document.getElementsByClassName("component");
 
 function changeBackground() {
+  // dark mode
   if (body.style.backgroundColor === "white") {
     body.style.backgroundColor = "#2e2e2e";
     button.style.backgroundColor = "white";
@@ -18,19 +19,17 @@ function changeBackground() {
     question.style.color = "white";
     logo.style.color = "white";
     component.style.backgroundColor = "#2e2e2e";
+    button.innerHTML = '<img src="./icons/night-mode.png" alt="" />';
   } else {
-    // button.innerHTML
+    // light mode
     body.style.backgroundColor = "white";
     button.style.backgroundColor = "#2e2e2e";
     button.style.color = "white";
-    question.style.color = "#white";
+    question.style.color = "white";
     logo.style.color = "#2e2e2e";
-    guess.style.color = "#2e2e2e";
-    guess.style.backgroundColor = "white";
-    component[0].style.backgroundColor = "white";
+    button.innerHTML = '<img src="./icons/sleep-mode.png" alt="" />';
   }
 }
-
 scores[0].style.display = "none";
 colorContainer.style.display = "none";
 guesses[0].style.display = "none";
