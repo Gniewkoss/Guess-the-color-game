@@ -44,6 +44,8 @@ function generateRandomColor() {
   console.log(GlobalRandomColor);
 }
 
+let score = 0;
+let highScore = 0;
 function checkAnswer(guess) {
   console.log(GlobalRandomColor);
 
@@ -51,13 +53,70 @@ function checkAnswer(guess) {
     const result = document.getElementById("result");
     result.innerHTML = "Correct!";
     result.style.color = "green";
+
+    const scoreWrapper = document.getElementsByClassName("score-wrapper")[0];
+    scoreWrapper.innerHTML = "Score :" + ++score;
+    const highScoreHtml =
+      document.getElementsByClassName("high-score-wrapper")[0];
+    if (score > highScore) {
+      highScore = score;
+      console.log(highScore);
+    }
+    highScoreHtml.innerHTML = "High Score :" + highScore;
+
+    generateRandomColor();
+    resetTimer();
+    downloadTimer();
   } else {
     const result = document.getElementById("result");
-    result.innerHTML = "Wrong!";
+
     result.style.color = "red";
     result.classList.add("horizontal-shaking");
     setTimeout(() => {
       result.classList.remove("horizontal-shaking");
     }, 1000);
+    const scoreWrapper = document.getElementsByClassName("score-wrapper")[0];
+    score = 0;
+    scoreWrapper.innerHTML = "Score: " + score;
+    generateRandomColor();
+    resetTimer();
+    downloadTimer();
+    result.innerHTML = "Wrong!";
   }
+}
+
+// time
+
+let timeleft = 5;
+let timerInterval;
+
+const body = document.getElementsByTagName("body")[0];
+
+const downloadTimer = () => {
+  timerInterval = setInterval(function () {
+    if (timeleft < 0) {
+      clearInterval(timerInterval);
+      resetTimer();
+
+      let gameOver = document.getElementById("game-over");
+      gameOver.innerHTML = "Game Over";
+      // make the background blurred and not clickable and show score
+    } else {
+      document.getElementsByClassName("time")[0].innerHTML =
+        "Time left: " + timeleft;
+    }
+    timeleft -= 1;
+  }, 1000);
+};
+
+function resetTimer() {
+  timeleft = 5;
+  clearInterval(timerInterval);
+  document.getElementsByClassName("time")[0].innerHTML =
+    "Time left: " + timeleft;
+}
+
+function start() {
+  downloadTimer();
+  generateRandomColor();
 }

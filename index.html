@@ -17,15 +17,32 @@
   </head>
   <body>
     <script src="./index.js"></script>
-    <div class="button">
-      <button type="button" onclick="changeBackground()" id="but">Test</button>
+
+    <!-- navbar -->
+
+    <div class="navbar">
+      <h1 class="logo">Colors</h1>
+      <div class="button">
+        <button type="button" onclick="changeBackground()" id="but">
+          Test
+        </button>
+      </div>
     </div>
-    <div class="content"></div>
-    <div class="question-box">
-      <p id="question">Guess the color</p>
-      <p id="result"></p>
-      <button id="start" onclick="generateRandomColor()">Start</button>
+    <!-- scores -->
+    <div class="scores">
+      <div class="time component">Time left: 5</div>
+      <div class="score-wrapper component">Score: 0</div>
+      <div class="high-score-wrapper component">High score: 0</div>
+    </div>
+    <div id="game-over"></div>
+    <div class="color-container">
       <div onload="generateRandomColor()" id="color"></div>
+      <div id="question">Guess the color</div>
+    </div>
+
+    <div class="question-box">
+      <p id="result"></p>
+      <button id="start" onclick="start()">Start</button>
     </div>
     <div class="guesses">
       <button
