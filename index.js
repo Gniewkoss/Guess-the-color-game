@@ -2,18 +2,25 @@ function changeBackground() {
   const body = document.getElementsByTagName("body")[0];
   const button = document.getElementById("but");
   const question = document.getElementById("question");
+  const scores = document.getElementsByClassName("component");
+  const logo = document.getElementById("logo");
+  const color = document.getElementById("color");
+  const guess = document.getElementsByClassName("guess");
 
   if (body.style.backgroundColor === "white") {
     body.style.backgroundColor = "#2e2e2e";
     button.style.backgroundColor = "white";
     button.style.color = "#2e2e2e";
     question.style.color = "white";
-    r;
+    logo.style.color = "white";
   } else {
     body.style.backgroundColor = "white";
     button.style.backgroundColor = "#2e2e2e";
     button.style.color = "white";
-    question.style.color = "#2e2e2e";
+    question.style.color = "#white";
+    logo.style.color = "#2e2e2e";
+    guess.style.color = "#2e2e2e";
+    guess.style.backgroundColor = "white";
   }
 }
 let GlobalRandomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
@@ -29,7 +36,7 @@ function generateRandomColor() {
   color.style.backgroundColor = GlobalRandomColor;
   let button = document.getElementById("start").innerHTML;
   if (button === "Start") {
-    document.getElementById("start").innerHTML = "Next";
+    document.getElementById("start").innerHTML = "Restart";
   }
   const correct = Math.floor(Math.random() * 4) + 1;
   for (let i = 1; i <= 4; i++) {
@@ -46,6 +53,7 @@ function generateRandomColor() {
 
 let score = 0;
 let highScore = 0;
+
 function checkAnswer(guess) {
   console.log(GlobalRandomColor);
 
@@ -70,8 +78,10 @@ function checkAnswer(guess) {
   } else {
     const result = document.getElementById("result");
 
+    result.innerHTML = "Wrong!";
     result.style.color = "red";
     result.classList.add("horizontal-shaking");
+
     setTimeout(() => {
       result.classList.remove("horizontal-shaking");
     }, 1000);
@@ -86,11 +96,13 @@ function checkAnswer(guess) {
 }
 
 // time
-
 let timeleft = 5;
 let timerInterval;
 
 const body = document.getElementsByTagName("body")[0];
+let restart = document.getElementById("restart");
+let gameOver = document.getElementById("game-over");
+let end = document.getElementById("end");
 
 const downloadTimer = () => {
   timerInterval = setInterval(function () {
@@ -98,9 +110,10 @@ const downloadTimer = () => {
       clearInterval(timerInterval);
       resetTimer();
 
-      let gameOver = document.getElementById("game-over");
-      gameOver.innerHTML = "Game Over";
-      // make the background blurred and not clickable and show score
+      end.innerHTML = "Time's up!";
+      restart.innerHTML = "Restart";
+      gameOver.style.bottom = "0";
+      gameOver.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
     } else {
       document.getElementsByClassName("time")[0].innerHTML =
         "Time left: " + timeleft;
@@ -116,7 +129,16 @@ function resetTimer() {
     "Time left: " + timeleft;
 }
 
+function resetGame() {
+  resetTimer();
+  restart.style.display = "none";
+
+  end.innerHTML = "";
+}
+
 function start() {
+  document.getElementById("start").style.display = "none";
+  resetGame();
   downloadTimer();
   generateRandomColor();
 }
