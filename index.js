@@ -18,8 +18,16 @@ function changeBackground() {
     button.style.color = "#2e2e2e";
     question.style.color = "white";
     logo.style.color = "white";
-    component.style.backgroundColor = "#2e2e2e";
     button.innerHTML = '<img src="./icons/night-mode.png" alt="" />';
+    firstQestion.style.color = "white";
+    for (i = 0; i < guess.length; i++) {
+      guess[i].style.color = "white";
+      guess[i].style.backgroundColor = "rgb(62, 62, 62)";
+    }
+    for (i = 0; i < component.length; i++) {
+      component[i].style.backgroundColor = "#3a3a3a";
+      component[i].style.color = "white";
+    }
   } else {
     // light mode
     body.style.backgroundColor = "white";
@@ -28,6 +36,15 @@ function changeBackground() {
     question.style.color = "white";
     logo.style.color = "#2e2e2e";
     button.innerHTML = '<img src="./icons/sleep-mode.png" alt="" />';
+    firstQestion.style.color = "#2e2e2e";
+    for (i = 0; i < guess.length; i++) {
+      guess[i].style.color = "#2e2e2e";
+      guess[i].style.backgroundColor = "white";
+    }
+    for (i = 0; i < component.length; i++) {
+      component[i].style.backgroundColor = "#ededed";
+      component[i].style.color = "#2e2e2e";
+    }
   }
 }
 scores[0].style.display = "none";
@@ -117,16 +134,14 @@ let restart = document.getElementById("restart");
 let gameOver = document.getElementById("game-over");
 let end = document.getElementById("end");
 
+gameOver.style.display = "none";
+
 const downloadTimer = () => {
   timerInterval = setInterval(function () {
     if (timeleft < 0) {
       clearInterval(timerInterval);
       resetTimer();
-
-      end.innerHTML = "Time's up!";
-      restart.innerHTML = "Restart";
-      gameOver.style.bottom = "0";
-      gameOver.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+      gameOver.style.display = "flex";
     } else {
       document.getElementsByClassName("time")[0].innerHTML =
         "Time left: " + timeleft;
@@ -144,9 +159,6 @@ function resetTimer() {
 
 function resetGame() {
   resetTimer();
-  restart.style.display = "none";
-
-  end.innerHTML = "";
 }
 
 function start() {
@@ -154,4 +166,12 @@ function start() {
   resetGame();
   downloadTimer();
   generateRandomColor();
+  gameOver.style.display = "none";
+  scoreReset();
+}
+
+function scoreReset() {
+  score = 0;
+  const scoreWrapper = document.getElementsByClassName("score-wrapper")[0];
+  scoreWrapper.innerHTML = "Score: " + score;
 }

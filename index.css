@@ -70,7 +70,7 @@ body {
   align-items: center;
   flex-direction: row;
   gap: 40px;
-  margin-top: 140px;
+  margin-top: 70px;
 }
 .guess {
   display: flex;
@@ -127,7 +127,7 @@ body {
   font-size: 30px;
   color: white;
   margin-top: 10rem;
-  text-shadow: #2e2e2e 0px 0px 10px;
+
   position: absolute;
 }
 
@@ -192,11 +192,10 @@ body {
   font-size: 20px;
   flex-direction: row;
 }
-
 #game-over {
   position: fixed;
   z-index: 9999;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   color: #ffffff;
@@ -204,8 +203,27 @@ body {
   top: 0;
   left: 0;
   right: 0;
+  bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
   flex-direction: column;
+}
+
+#restart {
+  transition: 0.1s;
+  width: 100px;
+  height: 70px;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 0.1px solid black;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+}
+#restart:hover {
+  transform: scale(1.1);
+
+  color: rgb(0, 0, 0);
 }
 
 #first-question {
